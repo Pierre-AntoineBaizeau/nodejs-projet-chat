@@ -16,7 +16,7 @@ model Message {
   createdAt DateTime    @default(now())
   content   String
   author    User        @relation(fields: [authorId], references: [id])
-  authorId  Int
+  authorId  Int         @default(null)
 }
 
 model User {
