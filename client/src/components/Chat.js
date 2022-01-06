@@ -1,7 +1,7 @@
 import React from 'react';
 import Message from "./Message";
 import BtnSubmit from "./BtnSubmit";
-import './style/Chat'
+import '../style/Chat.css'
 
 const Chat = () => {
     return (
