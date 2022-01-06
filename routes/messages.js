@@ -7,7 +7,11 @@ const prisma = new PrismaClient();
 router.get("/", async function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   try {
-    const mess = await prisma.message.findMany();
+    const mess = await prisma.message.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
     return res.status(200).json(mess);
   } catch (e) {
     console.log(e);
@@ -17,6 +21,7 @@ router.get("/", async function (req, res, next) {
 
 /* Post  message. */
 router.post("/", async function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const message = {
       content: req.body.content,
@@ -25,6 +30,7 @@ router.post("/", async function (req, res, next) {
     await prisma.message.create({
       data: message,
     });
+    console.log( req.body);
     console.log("Created messages");
     return res.json({ msg: "message create" });
   } catch (e) {

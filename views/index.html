@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< Updated upstream
     <head>
         <title>Real-time Chat App</title>
         <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
@@ -9,46 +8,45 @@
     <body>
         <div class="cadre">
             <p id="name"></p>
-            <ul class="messages"></ul>
+            <ul id="messages"></ul>
         </div>
         <form>
-            <input type="text" class="input" autocomplete="off" autofocus />
-            <button>Send</button>
+            <input type="text" class="input" autocomplete="off" autofocus  />
+            <input type="button" onclick="sendMessages()" value="send">
+            <input type="button" onclick="getMessages()" value="get">
         </form>
         <script>
             fetch('http://localhost:3000/messages')
-                .then((response) => response.json())
-                .then((resp) => {
-                    document.querySelector('#name').textContent = resp.msg;
+                .then((response) =>   response.json())
+                .then((data) => {
+                    let ul =   document.querySelector('#messages');
+                    data.forEach( (el) => {
+                        let li = ul.appendChild(document.createElement('li'));
+                        li.textContent = el.content;
+                    });
                 })
+                function getMessages() {
+                    fetch('http://localhost:3000/messages')
+                        .then((response) =>   response.json())
+                        .then((data) => {
+                            let ul =   document.querySelector('#messages');
+                            data.forEach( (el) => {
+                                let li = ul.appendChild(document.createElement('li'));
+                                li.textContent = el.content;
+                            });
+                        })
+                }
+            function sendMessages() {
+                const object = { content: 'James Gordon', authorId: 1 };
+                fetch('http://localhost:3000/messages', {
+                    method: 'POST',
+                    body: JSON.stringify(object)
+                })
+                    .then(res => res.json())
+                    .then(res => console.log(res));
+            }
+
+
         </script>
     </body>
 </html>
-=======
-  <head>
-    <title>Real-time Chat App</title>
-    <meta
-      name="viewport"
-      content="width=device-width,minimum-scale=1,initial-scale=1"
-    />
-    <link rel="stylesheet" href="../public/stylesheets/style.css" />
-  </head>
-  <body>
-    <div class="cadre">
-      <p id="name"></p>
-      <ul class="messages"></ul>
-    </div>
-    <form>
-      <input type="text" class="input" autocomplete="off" autofocus />
-      <button>Send</button>
-    </form>
-    <script>
-      fetch("http://localhost:3000/messages")
-        .then((response) => response.json())
-        .then((resp) => {
-          document.querySelector("#name").textContent = resp.msg;
-        });
-    </script>
-  </body>
-</html>
->>>>>>> Stashed changes
