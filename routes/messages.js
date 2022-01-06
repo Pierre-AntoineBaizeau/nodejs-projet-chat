@@ -9,7 +9,7 @@ router.get("/", async function (req, res, next) {
   try {
     const mess = await prisma.message.findMany({
       orderBy: {
-        createdAt: "desc",
+        createdAt: "des",
       },
     });
     return res.status(200).json(mess);
