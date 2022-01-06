@@ -7,7 +7,11 @@ const prisma = new PrismaClient();
 router.get("/", async function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   try {
-    const mess = await prisma.message.findMany();
+    const mess = await prisma.message.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
     return res.status(200).json(mess);
   } catch (e) {
     console.log(e);
