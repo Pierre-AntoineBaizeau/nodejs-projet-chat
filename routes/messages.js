@@ -1,12 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var app = express();
-
-app.use('/messages', router);
 
 /* GET messages listing. */
 router.get('/', function(req, res, next) {
-  res.status(200).json({msg: "get messages"});
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.status(200).json({msg: "send messages"});
 });
 
 /* Post  message. */
