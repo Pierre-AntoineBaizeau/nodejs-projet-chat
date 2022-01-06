@@ -1,13 +1,14 @@
 var express = require("express");
 var router = express.Router();
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
 /* GET messages listing. */
 router.get("/", async function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   try {
-    await db.message.find();
-    console.log("message find ");
-    return res.json({ msg: "Succes" });
+    const mess = await prisma.message.findMany();
+    return res.status(200).json(mess);
   } catch (e) {
     console.log(e);
     res.status(403).json({ msg: "404 error" });
