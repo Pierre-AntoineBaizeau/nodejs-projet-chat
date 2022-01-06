@@ -1,5 +1,7 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
 /* GET messages listing. */
 router.get("/", async function (req, res, next) {
@@ -17,11 +19,12 @@ router.get("/", async function (req, res, next) {
 /* Post  message. */
 router.post("/", async function (req, res, next) {
   try {
+    const message ={
+            content: req.body.content,
+            authorId: req.body.authorId,
+        };
     await prisma.message.create({
-      data: {
-        content: "testt",
-        authorId: 1,
-      },
+      data: message
     });
     console.log("Created messages");
     return res.json({ msg: "message create" });
