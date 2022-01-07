@@ -3,6 +3,23 @@ const router = express.Router();
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+/* Post  message. */
+router.post("/", async function (req, res, next) {
+  try {
+    const message = {
+      content: req.body.content,
+      authorId: req.body.authorId,
+    };
+
+    await prisma.message.create({
+      data: message,
+    });
+    return res.json({ msg: "message create" });
+  } catch (e) {
+    console.error(e);
+    return res.status(403).json({ msg: "something went wrong" });
+  }
+});
 /* GET messages listing. */
 router.get("/", async function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -19,24 +36,6 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-/* Post  message. */
-router.post("/", async function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  try {
-    const message = {
-      content: req.body.content,
-      authorId: req.body.authorId,
-    };
-    await prisma.message.create({
-      data: message,
-    });
-    console.log( req.body);
-    console.log("Created messages");
-    return res.json({ msg: "message create" });
-  } catch (e) {
-    console.error(e);
-    return res.status(403).json({ msg: "something went wrong" });
-  }
-});
+
 
 module.exports = router;
