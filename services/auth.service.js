@@ -7,13 +7,15 @@ const jwt = require('../utils/jwt');
 
 class AuthService {
     static async register(data) {
-          const { name  } = data;
-          data.password = bcrypt.hashSync(data.password, 8);
-          let user = prisma.user.create({
-              data
+          const { name, password  } = data;
+          const passwordHashed = bcrypt.hashSync(password, 8);
+          let user = await prisma.user.create({
+              data: {
+                name: name,
+                password: passwordHashed,
+              },
           })
           data.accessToken = await jwt.signAccessToken(user);
-  
           return data;
     }
 
@@ -31,7 +33,7 @@ class AuthService {
         if (!checkPassword) throw createError.Unauthorized('name address or password not valid')
         delete user.password
         const accessToken = await jwt.signAccessToken(user)
-        return { ...user, accessToken }
+        return {accessToken}
     }
     static async all() {
         const allUsers = await prisma.user.findMany();
