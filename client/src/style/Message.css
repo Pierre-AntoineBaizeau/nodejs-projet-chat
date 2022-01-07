@@ -7,9 +7,11 @@
 
 .myMessage{
     background-color: skyblue;
+    margin-bottom: 20px;
 }
 
 .blocMyMessage{
     display: flex;
     justify-content: end;
+    margin-bottom: 20px;
 }

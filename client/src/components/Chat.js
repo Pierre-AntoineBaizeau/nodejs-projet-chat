@@ -9,8 +9,10 @@ const Chat = () => {
             <div className="headChat">
                 <p className="h2">Chat général</p>
             </div>
-            <div className="containerMessage">
-                <Message />
+            <div className="scrollbar">
+                <div className="containerMessage">
+                    <Message />
+                </div>
             </div>
             <BtnSubmit />
         </div>

@@ -24,14 +24,15 @@ body{
     padding: 10px;
 }
 
-.containerMessage{
-    padding: 20px;
-    overflow-y: scroll;
+.scrollbar{
+    overflow-y: auto;
     max-height: 63vh;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
-.containerMessage div{
-    margin-bottom: 25px;
+.containerMessage{
+    padding: 20px;
 }
 
 .containerMessage p{
