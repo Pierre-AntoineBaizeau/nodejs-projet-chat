@@ -40,5 +40,18 @@ class authController {
             next(createError(e.statusCode, e.message))
         }
     }
+    static id = async (req, res, next) => {
+        try {
+            const id = await auth.id();
+            res.status(200).json({
+                status: true,
+                message: 'Id',
+                data: id
+            })
+        }
+        catch (e) {
+            next(createError(e.statusCode, e.message))
+        }
+    }
 }
 module.exports = authController;

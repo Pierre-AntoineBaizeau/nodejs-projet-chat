@@ -39,6 +39,18 @@ class AuthService {
         const allUsers = await prisma.user.findMany();
         return allUsers;
     }
+
+    static async id() {
+        const { id } = data;
+        const getId = await prisma.user.findUnique({
+            where: {
+                data: {
+                    id: id
+                  },
+            }
+        });
+        return { ...user};
+    }
 }
   
   module.exports = AuthService;
