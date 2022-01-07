@@ -21,7 +21,7 @@ const Message = () => {
                         <div key={index} className={myMessage ? "blocMyMessage" : ""}>
                             {
                                 <div>
-                                    <p>Moi le {moment(message.createdAt).format("l")}</p>
+                                    <p>Moi le {moment(message.createdAt).format("L")}</p>
                                     <span className={myMessage ? "myMessage message" : "message"}>{message.content}</span>
                                 </div>
                             }
