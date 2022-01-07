@@ -20,7 +20,10 @@
                 .then((response) =>   response.json())
                 .then((data) => {
                     let ul =   document.querySelector('#messages');
+                    ul.textContent = "";
+                    const a = [];
                     data.forEach( (el) => {
+                        a.push(el);
                         let li = ul.appendChild(document.createElement('li'));
                         li.textContent = el.content;
                     });
