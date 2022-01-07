@@ -1,11 +1,12 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 const auth = require('./auth');
 const createError = require('http-errors')
 
 /* GET home page. */
-router.get('/', function(req, res) {
-  res.send('Hello World!');
+router.get("/", function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.status(200).json({ msg: "hello" });
 });
 
 router.use('/auth', auth);

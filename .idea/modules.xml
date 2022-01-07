@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../react-IIMBenjaminBurstein/.idea/next-app.iml" filepath="$PROJECT_DIR$/../react-IIMBenjaminBurstein/.idea/next-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/node-express.iml" filepath="$PROJECT_DIR$/.idea/node-express.iml" />
     </modules>
   </component>

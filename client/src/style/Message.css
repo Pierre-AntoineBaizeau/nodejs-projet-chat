@@ -1,0 +1,17 @@
+.message{
+    padding: 10px 15px;
+    border: 1px lightgray solid;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.myMessage{
+    background-color: skyblue;
+    margin-bottom: 20px;
+}
+
+.blocMyMessage{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 20px;
+}
