@@ -6,16 +6,6 @@ import Chat from './components/Chat';
 const App = () => (
     <Router>
         <div>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/">login</Link>
-                    </li>
-                    <li>
-                        <Link to="/chat">chat</Link>
-                    </li>
-                </ul>
-            </nav>
             <Routes>
                 <Route exact path="/" element={<Login/>}/>
                 <Route exact path="/chat" element={<Chat/>}/>
