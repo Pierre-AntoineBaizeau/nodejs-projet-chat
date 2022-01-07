@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import '../style/Message.css'
 
 const Message = () => {
-    const [myMessage, setMyMessage] = useState(false)
+    const [myMessage, setMyMessage] = useState(true)
     const [messages, setMessages] = useState([])
 
     useEffect(   () => {
@@ -11,7 +11,6 @@ const Message = () => {
             .then((data) => {
                 setMessages(data)
             })
-
     }, [])
     return (
        <>
@@ -20,20 +19,11 @@ const Message = () => {
                     return (
                         <div key={index} className={myMessage ? "blocMyMessage" : ""}>
                             {
-                                myMessage ?
-                                    (
-                                        <div>
-                                            <p>Moi le 21/07</p>
-                                            <span className="myMessage message">{message.content}</span>
-                                        </div>
-                                    ) : (
-                                        <>
-                                            <p>Julia le 21/07</p>
-                                            <p className="message">
-                                                <span>{message.content}</span>
-                                            </p>
-                                        </>
-                                    )
+                                <div>
+                                    <p>Moi {message.createdAt}</p>
+                                    <span className={myMessage ? "myMessage message" : "message"}>{message.content}</span>
+                                </div>
+
                             }
                         </div>
                     )
